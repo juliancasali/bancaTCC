@@ -25,7 +25,7 @@ git clone https://github.com/seu-usuario/seu-projeto.git
 cd seu-projeto
 
 2. Suba os serviços com Docker:
-docker-compose up --build
+- docker-compose up --build
 
 3. Acesse no navegador:
 - Frontend: http://localhost
