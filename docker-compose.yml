@@ -1,0 +1,30 @@
+services:
+  mongo-start:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-julian-volume:/data/db
+    restart: always
+
+  back:
+    container_name: back-start
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo-start
+    env_file:
+      - ./backend/.env
+    restart: always
+  front:
+    container_name: frontend-start
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - back
+    environment:
+      - NODE_ENV=production
+volumes:
+  mongodb-julian-volume:
